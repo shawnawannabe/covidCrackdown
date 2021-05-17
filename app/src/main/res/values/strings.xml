@@ -1,0 +1,26 @@
+<resources>
+    <string name="age">Age</string>
+    <string name="check_in">Check in</string>
+    <string name="app_name">Covid Crackdown</string>
+    <string name="create_account">Create Account</string>
+    <string name="contact_number">Contact No.</string>
+    <string name="do_not_have_account">Do not have an Account?</string>
+    <string name="email">Email</string>
+    <string name="faqs">FAQs</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="gender">Gender</string>
+    <string name="have_account">Have an Account?</string>
+    <string name="home_page">Home Page</string>
+    <string name="hotspot">Hotspot</string>
+    <string name="log_in">Log in</string>
+    <string name="or">OR</string>
+    <string name="password">Password</string>
+    <string name="profile">Profile</string>
+    <string name="stats">Statistics</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up_page_caption">Together, covid-19 can be stopped!</string>
+    <string name="sign_up">Sign up</string>
+    <string name="terms_of_services">I agree to the Terms of Services and Privacy Policy</string>
+    <string name="user">User</string>
+    <string name="username">Username</string>
+</resources>

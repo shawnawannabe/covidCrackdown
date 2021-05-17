@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/app_icon"
+            android:alpha="0.5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:textSize="30sp"
+            android:textColor="#FFFFFF"
+            android:text="@string/sign_up"/>
+
+        <EditText
+            android:id="@+id/edit_text_sign_up_username"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:padding="16sp"
+            android:drawableStart="@drawable/custom_account_icon"
+            android:drawableLeft="@drawable/custom_account_icon"
+            android:drawablePadding="14sp"
+            android:textSize="14sp"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:background="@drawable/custom_input"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/edit_text_sign_up_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16sp"
+            android:drawableStart="@drawable/custom_email_icon"
+            android:drawableLeft="@drawable/custom_email_icon"
+            android:drawablePadding="14sp"
+            android:textSize="14sp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/custom_input"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/edit_text_sign_up_password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16sp"
+            android:drawableStart="@drawable/custom_key_icon"
+            android:drawableLeft="@drawable/custom_key_icon"
+            android:drawablePadding="14sp"
+            android:textSize="14sp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:background="@drawable/custom_input"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/edit_text_sign_up_gender"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16sp"
+            android:drawableStart="@drawable/custom_gender_icon"
+            android:drawableLeft="@drawable/custom_gender_icon"
+            android:drawablePadding="14sp"
+            android:textSize="14sp"
+            android:hint="@string/gender"
+            android:inputType=""
+            android:background="@drawable/custom_input"
+            android:layout_gravity="center"/>
+
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:theme="@style/TextLabel"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            >-->
+
+<!--            <AutoCompleteTextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:padding="16sp"-->
+<!--                android:drawableStart="@drawable/custom_account_icon"-->
+<!--                android:drawableLeft="@drawable/custom_account_icon"-->
+<!--                android:drawablePadding="14sp"-->
+<!--                android:textSize="14sp"-->
+<!--                android:hint="@string/gender"-->
+<!--                android:inputType=""-->
+<!--                android:background="@drawable/custom_input"/>-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+<!--TODO: change gender to dropdown menu-->
+
+        <EditText
+            android:id="@+id/edit_text_sign_up_age"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16sp"
+            android:drawableStart="@drawable/custom_age_icon"
+            android:drawableLeft="@drawable/custom_age_icon"
+            android:drawablePadding="14sp"
+            android:textSize="14sp"
+            android:hint="@string/age"
+            android:inputType="number"
+            android:background="@drawable/custom_input"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/edit_text_sign_up_contact_no"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16sp"
+            android:drawableStart="@drawable/custom_phone_icon"
+            android:drawableLeft="@drawable/custom_phone_icon"
+            android:drawablePadding="14sp"
+            android:textSize="14sp"
+            android:hint="@string/contact_number"
+            android:inputType="number"
+            android:background="@drawable/custom_input"
+            android:layout_gravity="center"/>
+
+        <CheckBox
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:buttonTint="#FFFFFF"
+            android:text="@string/terms_of_services"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_sign_up_create_account"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:text="@string/create_account"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/custom_button"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="100dp"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/have_account"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:id="@+id/text_view_activity_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_in"
+                android:textColor="@color/colorPrimaryVariant"
+                android:layout_gravity="end"
+                android:textAlignment="textEnd"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

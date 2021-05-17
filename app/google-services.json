@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "113617403394",
+    "project_id": "android-2c0a7",
+    "storage_bucket": "android-2c0a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113617403394:android:44ebf8c98f5d458f6e711b",
+        "android_client_info": {
+          "package_name": "com.example.covidcrackdown"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113617403394-l99g6fmhhlf8ppjjvd952lo5def9n7f0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2cGPSDYJp0d_nD3I-oerCZEDSgnFD_cM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113617403394-l99g6fmhhlf8ppjjvd952lo5def9n7f0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
