@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Statistic"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/stats_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/Theme.CovidCrackdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/stats"
+        app:titleTextColor="#FFFFFF" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_secondary"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager2_stats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

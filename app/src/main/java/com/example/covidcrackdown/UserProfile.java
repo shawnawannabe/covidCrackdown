@@ -49,8 +49,6 @@ public class UserProfile extends Fragment {
     private TextView textViewGender;
     private TextView textViewContactNo;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

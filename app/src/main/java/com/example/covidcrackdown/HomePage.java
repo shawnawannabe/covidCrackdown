@@ -1,15 +1,18 @@
 package com.example.covidcrackdown;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewFlipper;
+import android.widget.LinearLayout;
+
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,18 +21,19 @@ import android.widget.ViewFlipper;
  */
 public class HomePage extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //tab variable
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    HomePageFragmentAdapter adapter;
+    //icon variable
+    LinearLayout hotSpotLinearLayout;
+    LinearLayout faqsLinearLayout;
+    LinearLayout statsLinearLayout;
 
     public HomePage() {
         // Required empty public constructor
     }
+    // TODO: Rename and change types and number of parameters
 
     /**
      * Use this factory method to create a new instance of
@@ -39,12 +43,9 @@ public class HomePage extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment HomePage.
      */
-    // TODO: Rename and change types and number of parameters
     public static HomePage newInstance(String param1, String param2) {
         HomePage fragment = new HomePage();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,28 +53,83 @@ public class HomePage extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        FragmentManager fm = getParentFragmentManager();
+        adapter = new HomePageFragmentAdapter(fm, getLifecycle());
     }
-    private ViewFlipper viewFlipper;
-    private TextView textView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        viewFlipper = (ViewFlipper) view.findViewById(R.id.view_flipper);
-        textView = (TextView) view.findViewById(R.id.text_view);
-        
-        textView.setText("Dynamically added TextView");
-        textView.setGravity(Gravity.CENTER);
 
-        viewFlipper.addView(textView);
+        //tab
+        tabLayout = view.findViewById(R.id.tab_layout);
+        viewPager2 = view.findViewById(R.id.viewpager2);
+        viewPager2.setAdapter(adapter);
 
-        viewFlipper.setFlipInterval(2000);
-        viewFlipper.startFlipping();
+        tabLayout.addTab(tabLayout.newTab().setText("Things to know"));
+        tabLayout.addTab(tabLayout.newTab().setText("Things to do"));
 
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
+
+        //icon click event
+        hotSpotLinearLayout = view.findViewById(R.id.hot_spot);
+        faqsLinearLayout = view.findViewById(R.id.faqs);
+        statsLinearLayout = view.findViewById(R.id.stats);
+
+        hotSpotLinearLayout.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                openHotSpotActivity();
+            }
+        });
+
+        faqsLinearLayout.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                openFaqsActivity();
+            }
+        });
+
+        statsLinearLayout.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                openStatsActivity();
+            }
+        });
         return view;
     }
+
+    private void openFaqsActivity() {
+        Intent intent = new Intent(getActivity(), Faqs.class);
+        startActivity(intent);
+    }
+
+    public void openHotSpotActivity(){
+        Intent intent = new Intent(getActivity(), HotSpot.class);
+        startActivity(intent);
+    }
+
+    public void openStatsActivity(){
+        Intent intent = new Intent(getActivity(), Statistic.class);
+        startActivity(intent);
+    }
+
 }

@@ -11,4 +11,5 @@
 
     <color name="colorPrimary">#FF9c27b0</color>
     <color name="colorPrimaryVariant">#4a148c</color>
+    <color name="colorOnPrimary">@android:color/darker_gray</color>
 </resources>

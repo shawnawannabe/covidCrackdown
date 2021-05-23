@@ -2,6 +2,7 @@ package com.example.covidcrackdown;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 
@@ -21,9 +22,11 @@ public class MainPage extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomePage()).commit();
+
     }
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
