@@ -9,6 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/homepage_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/Theme.CovidCrackdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/user_profile"
+            app:titleTextColor="#FFFFFF" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +45,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
                     android:layout_weight="0.7"
                     android:layout_gravity="center_vertical"/>
 
@@ -56,6 +72,9 @@
                         android:text="@string/age"
                         android:background="@color/colorPrimaryVariant"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
                         android:gravity="center"/>
                     <TextView
                         android:id="@+id/text_view_fragment_user_profile_age"
@@ -63,6 +82,8 @@
                         android:layout_height="wrap_content"
                         android:text="abc"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
                         android:gravity="center"/>
                 </TableRow>
 <!--                TODO: make width of column fixed, the length of email is too long-->
@@ -74,6 +95,9 @@
                         android:text="@string/gender"
                         android:background="@color/colorPrimaryVariant"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
                         android:gravity="center"/>
                     <TextView
                         android:id="@+id/text_view_fragment_user_profile_gender"
@@ -81,6 +105,8 @@
                         android:layout_height="wrap_content"
                         android:text="abc"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
                         android:gravity="center"/>
                 </TableRow>
 
@@ -92,6 +118,9 @@
                         android:text="@string/contact_number"
                         android:background="@color/colorPrimaryVariant"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
                         android:gravity="center"/>
                     <TextView
                         android:id="@+id/text_view_fragment_user_profile_contact_no"
@@ -99,6 +128,8 @@
                         android:layout_height="wrap_content"
                         android:text="abc"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
                         android:gravity="center"/>
                 </TableRow>
                 <TableRow
@@ -109,6 +140,9 @@
                         android:text="@string/email"
                         android:background="@color/colorPrimaryVariant"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
                         android:gravity="center"/>
                     <TextView
                         android:id="@+id/text_view_fragment_user_profile_email"
@@ -116,6 +150,8 @@
                         android:layout_height="wrap_content"
                         android:text="abc"
                         android:textAlignment="center"
+                        android:padding="10dp"
+                        android:textSize="18sp"
                         android:gravity="center"/>
                 </TableRow>
 

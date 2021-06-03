@@ -15,8 +15,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     Context context;
 
     public RecyclerAdapter(Context context, String[] data) {
-        this.data = data;
         this.context = context;
+        this.data = data;
     }
 
     @NonNull
@@ -43,12 +43,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public int getItemCount() {
         return data.length;
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textName);
+            textView = itemView.findViewById(R.id.date);
         }
     }
 }

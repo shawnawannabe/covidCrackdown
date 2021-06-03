@@ -14,35 +14,18 @@ import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomePage#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class HomePage extends Fragment {
 
     //tab variable
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     HomePageFragmentAdapter adapter;
-    //icon variable
-    LinearLayout hotSpotLinearLayout;
-    LinearLayout faqsLinearLayout;
-    LinearLayout statsLinearLayout;
 
     public HomePage() {
         // Required empty public constructor
     }
-    // TODO: Rename and change types and number of parameters
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomePage.
-     */
     public static HomePage newInstance(String param1, String param2) {
         HomePage fragment = new HomePage();
         Bundle args = new Bundle();
@@ -92,44 +75,7 @@ public class HomePage extends Fragment {
             }
         });
 
-        //icon click event
-        hotSpotLinearLayout = view.findViewById(R.id.hot_spot);
-        faqsLinearLayout = view.findViewById(R.id.faqs);
-        statsLinearLayout = view.findViewById(R.id.stats);
-
-        hotSpotLinearLayout.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                openHotSpotActivity();
-            }
-        });
-
-        faqsLinearLayout.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                openFaqsActivity();
-            }
-        });
-
-        statsLinearLayout.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                openStatsActivity();
-            }
-        });
         return view;
-    }
-
-    private void openFaqsActivity() {
-        Intent intent = new Intent(getActivity(), Faqs.class);
-        startActivity(intent);
-    }
-
-    public void openHotSpotActivity(){
-        Intent intent = new Intent(getActivity(), HotSpot.class);
-        startActivity(intent);
-    }
-
-    public void openStatsActivity(){
-        Intent intent = new Intent(getActivity(), Statistic.class);
-        startActivity(intent);
     }
 
 }

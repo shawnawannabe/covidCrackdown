@@ -55,10 +55,10 @@ public class UserProfile extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+//        FirebaseUser user = mAuth.getCurrentUser();
 
-        DatabaseReference mPostReference = mDatabase.child("users/" + user.getUid());
-        addPostEventListener(mPostReference);
+//        DatabaseReference mPostReference = mDatabase.child("users/" + user.getUid());
+//        addPostEventListener(mPostReference);
 
     }
 

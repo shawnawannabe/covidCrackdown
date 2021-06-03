@@ -24,8 +24,7 @@
             app:title="@string/app_name"
             app:titleTextColor="#FFFFFF" />
 
-        <!-- TODO: Update blank fragment layout -->
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +37,7 @@
                 android:orientation="horizontal"
                 android:padding="10dp">
                 <LinearLayout
-                    android:id="@+id/hot_spot"
+                    android:id="@+id/hot_spot2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -56,11 +55,11 @@
                         android:textColor="@color/colorPrimaryVariant"
                         android:textAlignment="center"
                         android:layout_gravity="center_horizontal"/>
-                    <!--                TODO: text size-->
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/faqs"
+                    android:id="@+id/faqs2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -81,7 +80,7 @@
 
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/stats"
+                    android:id="@+id/stats2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -103,18 +102,21 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/teal_200"/>
+                app:tabIndicatorColor="@color/orange_500"
+                android:paddingBottom="6dp"
+                android:background="@color/white"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager2"

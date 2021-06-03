@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="20dp">
+    android:layout_height="match_parent">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="700dp"
-        app:cardBackgroundColor="@color/teal_200">
+        android:layout_height="500dp"
+        android:layout_marginVertical="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/colorOnPrimary">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,30 +17,42 @@
             <ImageView
                 android:id="@+id/profile_pic"
                 android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/ic_launcher"
-                android:layout_alignParentLeft="true"
-                />
+                android:layout_alignParentLeft="true"/>
+
             <TextView
-                android:id="@+id/textName"
+                android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="January"
-                android:textSize="20sp"
+                android:layout_margin="10dp"
+                android:text="CPRM KMM"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"/>
+                android:layout_toRightOf="@+id/profile_pic"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_name"
+                android:layout_toEndOf="@+id/profile_pic"
+                android:layout_marginStart="10dp"
+                android:text="date"
+                android:textSize="14sp"/>
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title"
                 android:layout_below="@+id/profile_pic"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textSize="18sp"/>
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="350dp"
                 android:src="@mipmap/ic_launcher"
                 android:layout_below="@+id/title"/>
 

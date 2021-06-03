@@ -1,14 +1,17 @@
 package com.example.covidcrackdown;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +28,12 @@ import org.w3c.dom.Text;
 public class SignIn extends AppCompatActivity {
 
     private TextView signUpTextView;
+    private TextView forgottenPasswordTextView;
     private EditText signInEmail;
     private EditText signInPassword;
+    private ImageView googleIconImage;
+    private ImageView facebookIconImage;
+
     private FirebaseAuth mAuth;
     private Button loginButton;
     private DatabaseReference mDatabase;
@@ -36,25 +43,25 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        signUpTextView = findViewById(R.id.text_view_activity_sign_in_sign_up);
-
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference myRef = database.getReference("message");
 //        myRef.setValue("Bye bye!");
-//
 
-        mAuth = FirebaseAuth.getInstance();
+        signUpTextView = findViewById(R.id.text_view_activity_sign_in_sign_up);
+        forgottenPasswordTextView = findViewById(R.id.text_view_activity_forgot_password);
+        googleIconImage = findViewById(R.id.image_view_google_icon);
+        facebookIconImage = findViewById(R.id.image_view_facebook_icon);
         loginButton = findViewById(R.id.activity_main_loginButton);
         signInEmail = findViewById(R.id.edit_text_activity_sign_in_email);
         signInPassword = findViewById(R.id.edit_text_activity_sign_in_password);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = signInEmail.getText().toString().trim();
+                /*String email = signInEmail.getText().toString().trim();
                 String password = signInPassword.getText().toString().trim();
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignIn.this, new OnCompleteListener<AuthResult>() {
@@ -73,8 +80,8 @@ public class SignIn extends AppCompatActivity {
                                     updateUI(null);
                                 }
                             }
-                        });
-//                openMainPage();
+                        });*/
+                openMainPage();
 //                signInAnonymously();
 //                mDatabase.child("users").child("u1").child("username").setValue("name of user 1");
 //                writeNewUser("id2","user2", "user2@gmail.com");
@@ -85,6 +92,27 @@ public class SignIn extends AppCompatActivity {
         signUpTextView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {openSignUpActivity();}
+        });
+
+        facebookIconImage.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 openBackEndFunctionNotImplementedYet();
+             }
+         });
+
+        googleIconImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBackEndFunctionNotImplementedYet();
+            }
+        });
+
+        forgottenPasswordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBackEndFunctionNotImplementedYet();
+            }
         });
     }
 
@@ -109,6 +137,7 @@ public class SignIn extends AppCompatActivity {
 
         mDatabase.child("users").child(userId).setValue(user);
     }
+
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -155,5 +184,24 @@ public class SignIn extends AppCompatActivity {
     public void openMainPage(){
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void openBackEndFunctionNotImplementedYet(){
+        Intent intent = new Intent(this, FunctionNotImplemented.class);
+        startActivity(intent);
+    }
+
+    private long pressedTime;
+
+    public void onBackPressed() {
+
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+        } else {
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
     }
 }

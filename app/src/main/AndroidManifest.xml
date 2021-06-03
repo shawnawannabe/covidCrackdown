@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".History"></activity>
+        <activity android:name=".FunctionNotImplemented"></activity>
+        <activity android:name=".History" />
         <activity android:name=".Statistic" />
         <activity android:name=".Faqs" />
         <activity android:name=".HotSpot" />

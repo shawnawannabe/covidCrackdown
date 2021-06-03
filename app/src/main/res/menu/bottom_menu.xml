@@ -14,4 +14,9 @@
         android:id="@+id/userProfile"
         android:title="@string/profile"
         android:icon="@drawable/ic_user"/>
+
+    <item
+        android:id="@+id/botNavMenu"
+        android:title="@string/menu"
+        android:icon="@drawable/ic_menu"/>
 </menu>

@@ -9,9 +9,6 @@
     android:orientation="vertical"
     tools:context=".MainPage">
 
-
-
-
     <FrameLayout
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
