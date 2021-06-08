@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,58 +28,69 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText editTextUserName, editTextSignUpEmail, editTextSignUpPassword, editTextSignUpGender, editTextSignUpAge, editTextSignUpContactNo;
-    private Button buttonSignUpCreateAccount;
     private DatabaseReference mDatabase;
+    private EditText editTextSignUpUserName, editTextSignUpEmail, editTextSignUpPassword, editTextSignUpAge, editTextSignUpContactNo;
+    private Button buttonSignUpCreateAccount;
+    private CheckBox signInCheckbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        editTextUserName = findViewById(R.id.edit_text_sign_up_username);
+        editTextSignUpUserName = findViewById(R.id.edit_text_sign_up_username);
         editTextSignUpEmail = findViewById(R.id.edit_text_sign_up_email);
         editTextSignUpPassword = findViewById(R.id.edit_text_sign_up_password);
-        editTextSignUpGender = findViewById(R.id.edit_text_sign_up_gender);
         editTextSignUpAge = findViewById(R.id.edit_text_sign_up_age);
         editTextSignUpContactNo = findViewById(R.id.edit_text_sign_up_contact_no);
         buttonSignUpCreateAccount = findViewById(R.id.button_sign_up_create_account);
+        signInCheckbox = findViewById(R.id.check_box_sign_up);
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.gender_list, R.layout.custom_spinner);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
         buttonSignUpCreateAccount.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                String username = editTextUserName.getText().toString().trim();
+                String username = editTextSignUpUserName.getText().toString().trim();
                 String email = editTextSignUpEmail.getText().toString().trim();
                 String password = editTextSignUpPassword.getText().toString().trim();
-                String gender = editTextSignUpGender.getText().toString().trim();
-//                String age = editTextSignUpAge.getText().toString().trim();
-//                String contactNo = editTextSignUpContactNo.getText().toString().trim();
+                String gender = spinner.getSelectedItem().toString();
+                String age = editTextSignUpAge.getText().toString();
+                String contactNo = editTextSignUpContactNo.getText().toString();
 
+                if (username.isEmpty()){
+                    editTextSignUpUserName.setError("Username is required.");
+                    return;
+                }
                 if (email.isEmpty()){
                     editTextSignUpEmail.setError("Email is required.");
                     return;
                 }
-
                 if (password.isEmpty()){
-                    editTextSignUpEmail.setError("Email is required.");
+                    editTextSignUpPassword.setError("Password is required.");
                     return;
                 }
-
-                if (gender.isEmpty()){
-                    editTextSignUpEmail.setError("Email is required.");
+                if (age.isEmpty()){
+                    editTextSignUpAge.setError("Age is required.");
                     return;
                 }
-
-//                if (age.isEmpty()){
-//                    editTextSignUpEmail.setError("Email is required.");
-//                    return;
-//                }
-//
-//                if (contactNo.isEmpty()){
-//                    editTextSignUpEmail.setError("Email is required.");
-//                    return;
-//                }
+                if (contactNo.isEmpty()){
+                    editTextSignUpContactNo.setError("Contact number is required.");
+                    return;
+                }
+                if(signInCheckbox.isChecked() == false){
+                    signInCheckbox.setError("Agree to the terms and condition to create account");
+                    return;
+                }
 //                TODO: make the validation even better
 //                TODO: re-add "age" and contactNo, (removed before because they were integer)
 //                if (usernameEditText.getText().length() > 0 && passwordEditText.getText().length() > 0) {
@@ -86,9 +101,14 @@ public class SignUp extends AppCompatActivity {
 //                    Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
 //                }
 
-                createAccount(username, email, password, gender);
+                // parse age and contact no as int
+                int age_value = Integer.parseInt(age);
+                int contactNo_value = Integer.parseInt(contactNo);
+                createAccount(username, email, password, gender, age_value, contactNo_value);
             }
         });
+
+
     }
 //    @IgnoreExtraProperties
 //    public class User {
@@ -112,12 +132,14 @@ public class SignUp extends AppCompatActivity {
 //
 //    }
 
+
+
     public void openSignIpActivity(){
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
     }
 
-    private void createAccount(String username, String email, String password, String gender) {
+    private void createAccount(String username, String email, String password, String gender, Integer age, Integer contactNo) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -128,21 +150,23 @@ public class SignUp extends AppCompatActivity {
 //                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             FirebaseUser user = mAuth.getCurrentUser();
                             String userId = user.getUid();
-                            writeNewUser(userId, username, email, password, gender);
-                            updateUI(user);
+                            writeNewUser(userId, username, email, password, gender, age, contactNo);
+//                            updateUI(user);
+                            Toast.makeText(SignUp.this, "USER CREATED", Toast.LENGTH_SHORT).show();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("FAILED", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUp.this, "Authentication failed.",
+                            String errorMessage = task.getException().getMessage();
+                            Toast.makeText(SignUp.this, "Error: " + errorMessage,
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+//                            updateUI(null);
                         }
                     }
                 });
     }
 
-    public void writeNewUser(String userId, String username, String email, String password, String gender) {
-        User user = new User(username, email, password, gender);
+    public void writeNewUser(String userId, String username, String email, String password, String gender, Integer age, Integer contactNo) {
+        User user = new User(username, email, password, gender, age, contactNo);
 
         mDatabase.child("users").child(userId).setValue(user);
     }

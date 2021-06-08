@@ -61,8 +61,18 @@ public class SignIn extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String email = signInEmail.getText().toString().trim();
+                String email = signInEmail.getText().toString().trim();
                 String password = signInPassword.getText().toString().trim();
+
+                if (email.isEmpty()){
+                    signInEmail.setError("Please fill in your email.");
+                    return;
+                }
+                if (password.isEmpty()){
+                    signInPassword.setError("Please fill in your password.");
+                    return;
+                }
+
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignIn.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -75,13 +85,13 @@ public class SignIn extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("SIGN-IN FAILED", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(SignIn.this, "Authentication failed.",
+                                    String errorMessage = task.getException().getMessage();
+                                    Toast.makeText(SignIn.this, "Authentication failed: " + errorMessage,
                                             Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
+                                    return;
                                 }
                             }
-                        });*/
-                openMainPage();
+                        });
 //                signInAnonymously();
 //                mDatabase.child("users").child("u1").child("username").setValue("name of user 1");
 //                writeNewUser("id2","user2", "user2@gmail.com");
@@ -115,6 +125,7 @@ public class SignIn extends AppCompatActivity {
             }
         });
     }
+/* delete later
 
     public class User {
 
@@ -137,6 +148,7 @@ public class SignIn extends AppCompatActivity {
 
         mDatabase.child("users").child(userId).setValue(user);
     }
+*/
 
     public void onStart() {
         super.onStart();

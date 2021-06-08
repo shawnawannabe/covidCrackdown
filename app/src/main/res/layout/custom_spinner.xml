@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gender"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:padding="16sp"
+    style="?attr/spinnerDropDownItemStyle"
+    android:drawableStart="@drawable/custom_gender_icon"
+    android:drawableLeft="@drawable/custom_gender_icon"
+    android:drawablePadding="14dp"
+    android:textSize="14sp"
+    android:hint="@string/gender"
+    android:background="@drawable/custom_input"
+    android:layout_gravity="center"/>

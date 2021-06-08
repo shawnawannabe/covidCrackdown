@@ -2,22 +2,23 @@ package com.example.covidcrackdown;
 
 public class User {
 
+    private Integer age;
+    private Integer contactNo;
     private String username;
     private String email;
     private String password;
     private String gender;
-    //        public Integer age;
-//        public Integer contactNo;
+
     public User() {
     }
 
-    public User(String username, String email, String password, String gender) {
+    public User(String username, String email, String password, String gender, Integer age, Integer contactNo) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.gender = gender;
-//            this.age = age;
-//            this.contactNo = contactNo;
+        this.age = age;
+        this.contactNo = contactNo;
     }
 
     public String getUsername() {
@@ -50,5 +51,20 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(Integer contactNo) {
+        this.contactNo = contactNo;
     }
 }

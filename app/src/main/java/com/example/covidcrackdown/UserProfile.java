@@ -28,8 +28,6 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class UserProfile extends Fragment {
 
-
-
     public UserProfile() {
         // Required empty public constructor
     }
@@ -55,10 +53,10 @@ public class UserProfile extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-//        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
 
-//        DatabaseReference mPostReference = mDatabase.child("users/" + user.getUid());
-//        addPostEventListener(mPostReference);
+        DatabaseReference mPostReference = mDatabase.child("users/" + user.getUid());
+        addPostEventListener(mPostReference);
 
     }
 
@@ -67,10 +65,10 @@ public class UserProfile extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User currentUser = dataSnapshot.getValue(User.class);
-                String str = currentUser.getEmail();
-                System.out.println("HERE: "+ str);
+                textViewAge.setText(Integer.toString(currentUser.getAge()));
                 textViewUsername.setText(currentUser.getUsername());
                 textViewGender.setText(currentUser.getGender());
+                textViewContactNo.setText(Integer.toString(currentUser.getContactNo()));
                 textViewEmail.setText(currentUser.getEmail());
 //                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
 //                    User currentUser = snapshot.getValue(User.class);
@@ -78,6 +76,7 @@ public class UserProfile extends Fragment {
 //                    System.out.println("HERE: "+str);
 //                 }
 //                TODO: remove the lag when changing text in fragment
+
             }
 
             @Override
@@ -95,9 +94,11 @@ public class UserProfile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_user_profile, container, false);
-        textViewUsername = (TextView) view.findViewById(R.id.text_view_fragment_user_profile_user);
-        textViewEmail = (TextView) view.findViewById(R.id.text_view_fragment_user_profile_email);
-        textViewGender = (TextView) view.findViewById(R.id.text_view_fragment_user_profile_gender);
+        textViewUsername = view.findViewById(R.id.text_view_fragment_user_profile_user);
+        textViewEmail = view.findViewById(R.id.text_view_fragment_user_profile_email);
+        textViewGender = view.findViewById(R.id.text_view_fragment_user_profile_gender);
+        textViewAge = view.findViewById(R.id.text_view_fragment_user_profile_age);
+        textViewContactNo = view.findViewById(R.id.text_view_fragment_user_profile_contact_no);
 
         return view;
     }

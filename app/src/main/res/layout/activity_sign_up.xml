@@ -32,10 +32,10 @@
             android:id="@+id/edit_text_sign_up_username"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:padding="16sp"
+            android:padding="16dp"
             android:drawableStart="@drawable/custom_account_icon"
             android:drawableLeft="@drawable/custom_account_icon"
-            android:drawablePadding="14sp"
+            android:drawablePadding="14dp"
             android:textSize="14sp"
             android:hint="@string/username"
             android:inputType="text"
@@ -47,10 +47,10 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:padding="16sp"
+            android:padding="16dp"
             android:drawableStart="@drawable/custom_email_icon"
             android:drawableLeft="@drawable/custom_email_icon"
-            android:drawablePadding="14sp"
+            android:drawablePadding="14dp"
             android:textSize="14sp"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
@@ -62,54 +62,25 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:padding="16sp"
+            android:padding="16dp"
             android:drawableStart="@drawable/custom_key_icon"
             android:drawableLeft="@drawable/custom_key_icon"
-            android:drawablePadding="14sp"
+            android:drawablePadding="14dp"
             android:textSize="14sp"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:background="@drawable/custom_input"
             android:layout_gravity="center"/>
 
-        <EditText
-            android:id="@+id/edit_text_sign_up_gender"
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:padding="16sp"
-            android:drawableStart="@drawable/custom_gender_icon"
-            android:drawableLeft="@drawable/custom_gender_icon"
-            android:drawablePadding="14sp"
-            android:textSize="14sp"
-            android:hint="@string/gender"
-            android:inputType=""
             android:background="@drawable/custom_input"
             android:layout_gravity="center"/>
 
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:theme="@style/TextLabel"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            >-->
-
-<!--            <AutoCompleteTextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:padding="16sp"-->
-<!--                android:drawableStart="@drawable/custom_account_icon"-->
-<!--                android:drawableLeft="@drawable/custom_account_icon"-->
-<!--                android:drawablePadding="14sp"-->
-<!--                android:textSize="14sp"-->
-<!--                android:hint="@string/gender"-->
-<!--                android:inputType=""-->
-<!--                android:background="@drawable/custom_input"/>-->
-
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-<!--TODO: change gender to dropdown menu-->
+        //alternative text inputlayout
 
         <EditText
             android:id="@+id/edit_text_sign_up_age"
@@ -142,6 +113,7 @@
             android:layout_gravity="center"/>
 
         <CheckBox
+            android:id="@+id/check_box_sign_up"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -160,7 +132,8 @@
             android:textColor="#FFFFFF"
             android:background="@drawable/custom_button"/>
 
-        <LinearLayout
+        //decide if to add in later on
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="100dp"
@@ -181,7 +154,7 @@
                 android:layout_gravity="end"
                 android:textAlignment="textEnd"/>
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
 
