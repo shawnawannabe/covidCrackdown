@@ -3,7 +3,9 @@ package com.example.covidcrackdown;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.bluetooth.BluetoothGattDescriptor;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -13,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONObject;
 
@@ -21,10 +24,14 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+
+import static android.content.ContentValues.TAG;
 
 public class Faqs extends AppCompatActivity {
 
     private TextView test;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,24 +42,38 @@ public class Faqs extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         test = findViewById(R.id.faqs_test);
-        try {
-            URL url = new URL ("https://reqres.in/api/users");
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/json; utf-8");
+        mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
+        String url = "https://android-2c0a7-default-rtdb.firebaseio.com/users/"+ uid + "/location.json";
+        /*String url = "https://android-2c0a7-default-rtdb.firebaseio.com/location.json";
 
-            con.setRequestProperty("Accept", "application/json");
-            con.setDoOutput(true);
-            String jsonInputString = "{\"name\": \"Upendra\", \"job\": \"Programmer\"}";
-            try(OutputStream os = con.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse: HERE");
+                        test.setText("Response: " + response.toString());
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+                        Log.d(TAG, "onResponse: " + error.getMessage());
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);*/
+
+        HashMap data = new HashMap();
+        data.put("loc", "kfc");
+        data.put("time", 12);
+
+
+        postData(url, data);
 
     }
     @Override
@@ -60,5 +81,25 @@ public class Faqs extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+    public void postData(String url, HashMap data){
 
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url,new JSONObject(data),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse: checkdb");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "onErrorResponse: ", error.getCause());
+                    }
+                }
+        ){
+            //here I want to post data to sever
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(jsonobj);
+    }
 }

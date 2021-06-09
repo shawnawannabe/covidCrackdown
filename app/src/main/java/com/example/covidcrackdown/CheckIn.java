@@ -26,26 +26,38 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.Result;
 
+import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+
+import static android.content.ContentValues.TAG;
 
 
 public class CheckIn extends Fragment {
     private CodeScanner mCodeScanner;
     private TextView historyTextView;
+    private FirebaseAuth mAuth;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         final Activity activity = getActivity();
-        View root = inflater.inflate(R.layout.fragment_check_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_check_in, container, false);
 
+        mAuth = FirebaseAuth.getInstance();
         //qr code scanner
-        CodeScannerView scannerView = root.findViewById(R.id.check_in_scanner_view);
+        CodeScannerView scannerView = view.findViewById(R.id.check_in_scanner_view);
         mCodeScanner = new CodeScanner(activity, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
@@ -54,6 +66,34 @@ public class CheckIn extends Fragment {
                     @Override
                     public void run() {
                         Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+
+                        //get json from qrcode
+                        String url =  result.getText();
+                        String uid = mAuth.getCurrentUser().getUid();
+                        String post_url = "https://android-2c0a7-default-rtdb.firebaseio.com/users/"+ uid + "/location.json";
+
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        Log.d(TAG, "check db");
+                                        Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show();
+                                        postData(post_url, response);
+                                    }
+                                }, new Response.ErrorListener() {
+
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        // TODO: Handle error
+                                        Log.d(TAG, "onResponse: " + error.getMessage());
+
+                                    }
+                                });
+
+                        // Access the RequestQueue through your singleton class.
+                        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+
                     }
                 });
             }
@@ -67,7 +107,7 @@ public class CheckIn extends Fragment {
         setupPermission((Context) getActivity(), (Activity) getActivity());
 
         //open history
-        historyTextView = root.findViewById(R.id.text_view_fragment_check_in_history);
+        historyTextView = view.findViewById(R.id.text_view_fragment_check_in_history);
         historyTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,16 +115,31 @@ public class CheckIn extends Fragment {
             }
         });
 
-        //adding history
-//        Toolbar actionBarToolBar = root.findViewById(R.id.toolbar_checkin);
-//        ((AppCompatActivity)getActivity()).setSupportActionBar(actionBarToolBar);
-//        actionBarToolBar.setTitle("Check Out");
-//        setHasOptionsMenu(true);
-//        actionBarToolBar.inflateMenu(R.menu.checkin_toolbar);
-//        Menu menu = actionBarToolBar.getMenu();
-
-        return root;
+        return view;
     }
+
+    public void postData(String url, JSONObject data){
+
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, data,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse: check is it posted");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "onErrorResponse: ", error.getCause());
+                    }
+                }
+        ){
+            //here I want to post data to sever
+        };
+
+        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonobj);
+    }
+
     private void openHistoryActivity(){
         Intent intent = new Intent(getActivity(), History.class);
         startActivity(intent);

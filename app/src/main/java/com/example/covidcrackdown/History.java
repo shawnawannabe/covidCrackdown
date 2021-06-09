@@ -3,6 +3,7 @@ package com.example.covidcrackdown;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.nfc.Tag;
@@ -29,7 +30,8 @@ public class History extends AppCompatActivity {
     private LinearLayout linearLayout;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private TextView button;
+
+//    private TextView button;
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +44,19 @@ public class History extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         linearLayout = findViewById(R.id.history_linear_layout);
-        button = findViewById(R.id.tmp_button);
+//        button = findViewById(R.id.tmp_button);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
+        addLocation(mDatabase);
+
+        /* disable for now
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 addLocation(mDatabase);
             }
-        });
+        });*/
 
 
     }
