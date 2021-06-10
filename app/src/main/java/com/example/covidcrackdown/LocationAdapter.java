@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.core.Context;
-
+//import com.google.firebase.database.core.Context;
+import android.content.Context;
 import java.util.ArrayList;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyViewHolder> {
@@ -26,7 +26,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.location_list_item,parent,false);
         return  new MyViewHolder(v);
     }
 
@@ -34,8 +34,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Location location = locationList.get(position);
-        holder.firstName.setText(location.getLocationName());
-        holder.lastName.setText(location.getTime());
+        holder.locationName.setText(location.getLocationName());
+        holder.locationDate.setText(Integer.toString(location.getTime()));
 
     }
 
@@ -46,13 +46,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView firstName, lastName, age;
+        TextView locationName, locationDate, age;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            firstName = itemView.findViewById(R.id.tvfirstName);
-            lastName = itemView.findViewById(R.id.tvlastName);
+            locationName = itemView.findViewById(R.id.location_name);
+            locationDate = itemView.findViewById(R.id.location_date);
 
         }
     }
