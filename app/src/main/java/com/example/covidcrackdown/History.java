@@ -34,7 +34,7 @@ public class History extends AppCompatActivity {
 
     private LinearLayout linearLayout;
     private DatabaseReference mDatabase;
-    private  DatabaseReference locationDatabase;
+    private DatabaseReference locationDatabase;
     private FirebaseAuth mAuth;
     private RecyclerView historyRecyclerView;
     private LocationAdapter locationAdapter;
@@ -53,7 +53,7 @@ public class History extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         linearLayout = findViewById(R.id.history_linear_layout);
-//        button = findViewById(R.id.tmp_button);
+//      button = findViewById(R.id.tmp_button);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
@@ -79,7 +79,6 @@ public class History extends AppCompatActivity {
 
         Query myLocation = mDatabase.child("users").child(uid).child("location");
 
-
         myLocation.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -88,11 +87,8 @@ public class History extends AppCompatActivity {
 
                     Location location = dataSnapshot.getValue(Location.class);
                     list.add(location);
-
-
                 }
                 locationAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -127,8 +123,6 @@ public class History extends AppCompatActivity {
                 Log.w(TAG, "loadPost:onCancelled", error.toException());
             }
         });
-
-
     }
 
     @Override

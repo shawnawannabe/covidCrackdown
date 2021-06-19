@@ -15,7 +15,7 @@
         <activity android:name=".FunctionNotImplemented"></activity>
         <activity android:name=".History" />
         <activity android:name=".Statistic" />
-        <activity android:name=".Faqs" />
+        <activity android:name=".FaqsActivity" />
         <activity android:name=".HotSpot" />
         <activity android:name=".MainPage" />
         <activity android:name=".SignUp" />

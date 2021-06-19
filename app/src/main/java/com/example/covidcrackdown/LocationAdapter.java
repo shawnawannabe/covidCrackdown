@@ -14,9 +14,7 @@ import java.util.ArrayList;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyViewHolder> {
     Context context;
-
     ArrayList<Location> locationList;
-
 
     public LocationAdapter(Context context, ArrayList<Location> locationList) {
         this.context = context;
