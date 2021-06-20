@@ -100,10 +100,10 @@ public class Menu extends Fragment {
     }
 
     public void openHotSpotActivity(){
-        /*Intent intent = new Intent(getActivity(), HotSpot.class);
-        startActivity(intent);*/
-        FirebaseUser user = mAuth.getCurrentUser();
-        String userId = user.getUid();
+        Intent intent = new Intent(getActivity(), HotSpot.class);
+        startActivity(intent);
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        String userId = user.getUid();
         //writeLocation(userId, "KFC", 1);
         //writeFaqs("What is COVID-19?", "COVID-19 is a disease caused by a virus called SARS-CoV-2. Most people with COVID-19 have mild symptoms, but some people can become severely ill. Although most people with COVID-19 get better within weeks of illness, some people experience post-COVID conditions. Post-COVID conditions are a wide range of new, returning, or ongoing health problems people can experience more than four weeks after first being infected with the virus that causes COVID-19. Older people and those who have certain underlying medical conditions are more likely to get severely ill from COVID-19. Vaccines against COVID-19 are safe and effective.");
         //writeFaqs("How does the virus spread?",
@@ -128,9 +128,9 @@ public class Menu extends Fragment {
     }
 
     public void openStatsActivity(){
-//        Intent intent = new Intent(getActivity(), Statistic.class);
-//        startActivity(intent);
-        tryout("https://corona.lmao.ninja/v2/all");
+        Intent intent = new Intent(getActivity(), Statistic.class);
+        startActivity(intent);
+//        tryout("https://corona.lmao.ninja/v2/all");
     }
 
     public void openLogoutActivity(){
@@ -180,7 +180,7 @@ public class Menu extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        
+
                     }
                 }, new Response.ErrorListener() {
 

@@ -16,9 +16,9 @@ public class StatsFragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 1:
-                return new LocalStats();
+                return new GlobalStats();
         }
-        return new GlobalStats();
+        return new LocalStats();
     }
 
     @Override

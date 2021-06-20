@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.android.secrets-gradle-plugin' version '1.1.0'
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
@@ -50,4 +51,9 @@ dependencies {
     //Volley
     implementation 'com.android.volley:volley:1.2.0'
 
+    //Google Play Service
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    //Google Play maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 }

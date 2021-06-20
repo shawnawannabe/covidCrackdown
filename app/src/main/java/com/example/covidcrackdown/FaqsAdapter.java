@@ -40,7 +40,7 @@ public class FaqsAdapter extends RecyclerView.Adapter<FaqsAdapter.MyViewHolder> 
         return faqsList.size();
     }
 
-    public class MyViewHolder extends LocationAdapter.MyViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView faqsTitle, faqsDetail;
 
         public MyViewHolder(@NonNull View itemView) {

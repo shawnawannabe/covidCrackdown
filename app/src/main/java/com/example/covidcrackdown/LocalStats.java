@@ -1,47 +1,49 @@
 package com.example.covidcrackdown;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LocalStats#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
+
 public class LocalStats extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView confirmedCasesTotalLocal;
+    private TextView confirmedCasesTodayLocal;
+    private TextView recoveredCasesTotalLocal;
+    private TextView recoveredCasesTodayLocal;
+    private TextView deathCasesTotalLocal;
+    private TextView deathCasesTodayLocal;
+    private TextView activeCasesTotalLocal;
+    private TextView activeCasesTodayLocal;
 
     public LocalStats() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LocalStats.
-     */
-    // TODO: Rename and change types and number of parameters
     public static LocalStats newInstance(String param1, String param2) {
         LocalStats fragment = new LocalStats();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,8 +52,6 @@ public class LocalStats extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -59,6 +59,83 @@ public class LocalStats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_local_stats, container, false);
+        View view = inflater.inflate(R.layout.fragment_local_stats, container, false);
+        confirmedCasesTotalLocal = view.findViewById(R.id.stats_local_confirmed_cases_total);
+        confirmedCasesTodayLocal = view.findViewById(R.id.stats_local_confirmed_cases_today);
+        recoveredCasesTotalLocal = view.findViewById(R.id.stats_local_recovered_cases_total);
+        recoveredCasesTodayLocal = view.findViewById(R.id.stats_local_recovered_cases_today);
+        deathCasesTotalLocal = view.findViewById(R.id.stats_local_death_cases_total);
+        deathCasesTodayLocal = view.findViewById(R.id.stats_local_death_cases_today);
+        activeCasesTotalLocal = view.findViewById(R.id.stats_local_active_cases_total);
+        activeCasesTodayLocal = view.findViewById(R.id.stats_local_active_cases_today);
+        /*String url = "https://corona.lmao.ninja/v3/covid-19/all";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            Numbers numbers = new Numbers(
+                                    response.get("cases").toString(), response.get("todayCases").toString(),
+                                    response.get("recovered").toString(), response.get("todayRecovered").toString(),
+                                    response.get("deaths").toString(), response.get("todayDeaths").toString(),
+                                    response.get("active").toString(), response.get("active").toString());
+                            numbersList.add(numbers);
+                            String pt = response.get("cases").toString();
+                            Log.d(TAG, "HERE:" + numbers.toString());
+                            Log.d(TAG, "HERE:" + numbersList.toString());
+                            Toast.makeText(getActivity(), numbersList.toString(), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+                        Log.d(TAG, "onResponse: " + error.getMessage());
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+
+        globalStatsRecyclerView = (RecyclerView) view.findViewById(R.id.global_stats_recycler_view);
+        globalStatsRecyclerView.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
+        numbersList = new ArrayList<>();
+        globalStatsNumbersAdapter = new NumbersAdapter((Context) getActivity(), numbersList);
+        globalStatsRecyclerView.setAdapter(globalStatsNumbersAdapter);*/
+
+        String url = "https://corona.lmao.ninja/v3/covid-19/countries/Malaysia?strict=true";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            confirmedCasesTotalLocal.setText(response.get("cases").toString());
+                            confirmedCasesTodayLocal.setText(response.get("todayCases").toString());
+                            recoveredCasesTotalLocal.setText(response.get("recovered").toString());
+                            recoveredCasesTodayLocal.setText(response.get("todayRecovered").toString());
+                            deathCasesTotalLocal.setText(response.get("deaths").toString());
+                            deathCasesTodayLocal.setText(response.get("todayDeaths").toString());
+                            activeCasesTotalLocal.setText(response.get("active").toString());
+                            activeCasesTodayLocal.setText(response.get("active").toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "onResponse: " + error.getMessage());
+                    }
+                });
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+
+        return view;
     }
 }
