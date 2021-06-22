@@ -33,7 +33,12 @@ public class ThingsToKnow extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
-    String monthNames[] = {"Jan 2020", "Feb 2020","March 2020", "April 2020"};
+    String monthNames[] = {"22 Jun 2021 6.30PM", "21 Jun 2021 6.30PM","20 Jun 2021 6.30PM"};
+    String title[] = {"COVID-19 IN MALAYSIA AS OF 22 JUNE 2021",
+            "COVID-19 IN MALAYSIA AS OF 21 JUNE 2021",
+            "COVID-19 IN MALAYSIA AS OF 20 JUNE 2021"};
+    int profileImage[] = {R.drawable.cprc, R.drawable.cprc, R.drawable.cprc};
+    int images[] = {R.drawable.jun_22, R.drawable.jun_21, R.drawable.jun_20};
 
 
     @Override
@@ -42,7 +47,7 @@ public class ThingsToKnow extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_things_to_know, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
-        recyclerAdapter = new RecyclerAdapter((Context) getActivity(), monthNames);
+        recyclerAdapter = new RecyclerAdapter((Context) getActivity(), monthNames, title, profileImage, images);
         recyclerView.setAdapter(recyclerAdapter);
         return view;
     }

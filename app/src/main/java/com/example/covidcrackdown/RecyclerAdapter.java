@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,12 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    String data[];
+    String date[];
+    String title[];
+    int profileImage[];
+    int image[];
     Context context;
 
-    public RecyclerAdapter(Context context, String[] data) {
+    public RecyclerAdapter(Context context, String[] date, String[] title, int[] profileImage, int[] image) {
         this.context = context;
-        this.data = data;
+        this.date = date;
+        this.title = title;
+        this.profileImage = profileImage;
+        this.image = image;
     }
 
     @NonNull
@@ -30,26 +37,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
-        holder.textView.setText(data[position]);
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "clicked on: " + data[position], Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.date.setText(date[position]);
+        holder.title.setText(title[position]);
+        holder.profileImage.setImageResource(profileImage[position]);
+        holder.caseImage.setImageResource(image[position]);
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return date.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textView;
+        TextView date;
+        TextView title;
+        ImageView profileImage;
+        ImageView caseImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.date);
+            date = itemView.findViewById(R.id.date);
+            title = itemView.findViewById(R.id.title);
+            profileImage = itemView.findViewById(R.id.profile_pic);
+            caseImage = itemView.findViewById(R.id.image_of_cases);
         }
     }
 }

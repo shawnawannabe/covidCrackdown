@@ -68,5 +68,19 @@ public class HotSpot extends AppCompatActivity implements OnMapReadyCallback {
                 .strokeWidth(10)
                 .strokeColor(Color.argb(128, 255, 0, 0))
                 .fillColor(Color.argb(128, 255, 0, 0)));
+
+        googleMap.addCircle(new CircleOptions()
+                .center(new LatLng(2.826107608777927, 101.70673371160751))
+                .radius(300)
+                .strokeWidth(10)
+                .strokeColor(Color.argb(128, 255, 0, 0))
+                .fillColor(Color.argb(128, 255, 0, 0)));
+
+        googleMap.addCircle(new CircleOptions()
+                .center(new LatLng(2.825676464643064, 101.71325964138734))
+                .radius(600)
+                .strokeWidth(10)
+                .strokeColor(Color.argb(128, 255, 0, 0))
+                .fillColor(Color.argb(128, 255, 0, 0)));
     }
 }

@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_above="@+id/bottom_navigation_view"/>
+        android:layout_above="@+id/bottom_navigation_view"
+        android:background="#14000000"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
