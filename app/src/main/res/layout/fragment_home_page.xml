@@ -108,14 +108,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="10dp">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
+            android:paddingHorizontal="10dp">
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabIndicatorColor="@color/orange_500"
-                android:background="@color/white"/>
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabIndicatorColor="@color/orange_500"
+                    android:background="@color/white"/>
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager2"

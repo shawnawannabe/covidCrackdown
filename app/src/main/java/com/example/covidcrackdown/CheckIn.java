@@ -55,6 +55,7 @@ public class CheckIn extends Fragment {
         final Activity activity = getActivity();
         View view = inflater.inflate(R.layout.fragment_check_in, container, false);
 
+
         mAuth = FirebaseAuth.getInstance();
         //qr code scanner
         CodeScannerView scannerView = view.findViewById(R.id.check_in_scanner_view);
@@ -187,4 +188,13 @@ public class CheckIn extends Fragment {
 //                    // decision.
 //                }
 //            });
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+
+
 }

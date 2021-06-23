@@ -20,11 +20,19 @@
         app:title="@string/stats"
         app:titleTextColor="#FFFFFF" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_stats"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_secondary"/>
+        android:layout_margin="20dp"
+        app:cardCornerRadius="10dp">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/colorPrimaryVariant"
+            app:tabIndicatorGravity="stretch"
+            app:tabSelectedTextColor="@color/white"/>
+    </androidx.cardview.widget.CardView>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager2_stats"

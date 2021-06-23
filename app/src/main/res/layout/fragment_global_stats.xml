@@ -19,19 +19,28 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp">
+                    android:layout_marginHorizontal="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="@color/yellow_600">
                     <TextView
+                        android:id="@+id/stats_global_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="date"
                         android:padding="30dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:gravity="center"/>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp">
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/amber_900">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -43,20 +52,66 @@
                             android:layout_height="wrap_content"
                             android:text="Total Confirmed Cased"
                             android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
                             />
-                        <TextView
-                            android:id="@+id/stats_confirmed_cases_today"
-                            android:layout_width="match_parent"
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Confirmed Cased Today"
-                            android:gravity="center"/>
+                            app:cardCornerRadius="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            >
+                            <!--<TextView
+                                android:id="@+id/stats_confirmed_cases_today"
+                                android:layout_width="wrap_content"
+                                android:text="Confirmed Cased Today"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:padding="10dp"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                />-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/stats_confirmed_cases_today"
+                                    android:layout_width="wrap_content"
+                                    android:text="Confirmed Cased Today"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:paddingVertical="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:layout_gravity="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" 10 mins ago"
+                                    android:textStyle="italic"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center"
+                                    android:paddingRight="10dp"
+                                    android:paddingVertical="10dp"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp">
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/green_500">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -67,20 +122,65 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Total Recovered Cased"
-                            android:gravity="center"/>
-                        <TextView
-                            android:id="@+id/stats_recovered_cases_today"
-                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Recovered Cased Today"
-                            android:gravity="center"/>
+                            app:cardCornerRadius="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            >
+                            <!--<TextView
+                                android:id="@+id/stats_recovered_cases_today"
+                                android:layout_width="wrap_content"
+                                android:text="Recovered Cased Today"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:padding="10dp"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                />-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/stats_recovered_cases_today"
+                                    android:layout_width="wrap_content"
+                                    android:text="Recovered Cased Today"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:paddingVertical="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:layout_gravity="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" 10 mins ago"
+                                    android:textStyle="italic"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center"
+                                    android:paddingRight="10dp"
+                                    android:paddingVertical="10dp"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp">
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/black">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,20 +191,65 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Total Death Cased"
-                            android:gravity="center"/>
-                        <TextView
-                            android:id="@+id/stats_death_cases_today"
-                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Death Cased Today"
-                            android:gravity="center"/>
+                            app:cardCornerRadius="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp">
+                            <!--<TextView
+                                android:id="@+id/stats_death_cases_today"
+                                android:layout_width="wrap_content"
+                                android:text="Death Cased Today"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:padding="10dp"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                />-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/stats_death_cases_today"
+                                    android:layout_width="wrap_content"
+                                    android:text="Death Cased Today"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:paddingVertical="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:layout_gravity="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" 10 mins ago"
+                                    android:textStyle="italic"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center"
+                                    android:paddingRight="10dp"
+                                    android:paddingVertical="10dp"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp">
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/red_900"
+                    android:layout_marginBottom="10dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -115,13 +260,45 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Total Active Cased"
-                            android:gravity="center"/>
-                        <TextView
-                            android:id="@+id/stats_active_cases_today"
-                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Active Cased Today"
-                            android:gravity="center"/>
+                            app:cardCornerRadius="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            >
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/stats_active_cases_today"
+                                    android:layout_width="wrap_content"
+                                    android:text="Active Cased Today"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:paddingVertical="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:layout_gravity="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" 10 mins ago"
+                                    android:textStyle="italic"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center"
+                                    android:paddingRight="10dp"
+                                    android:paddingVertical="10dp"/>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>

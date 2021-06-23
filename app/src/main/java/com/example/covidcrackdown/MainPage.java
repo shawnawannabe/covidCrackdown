@@ -1,19 +1,27 @@
 package com.example.covidcrackdown;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import static android.content.ContentValues.TAG;
 
 public class MainPage extends AppCompatActivity {
 
@@ -38,8 +46,22 @@ public class MainPage extends AppCompatActivity {
                         selectedFragment = new HomePage();
                         break;
                     case R.id.checkIn:
+                        if (ContextCompat.checkSelfPermission(
+                                getApplicationContext(), Manifest.permission.CAMERA) ==
+                                PackageManager.PERMISSION_GRANTED) {
+                            // You can use the API that requires the permission.
+                            Log.d(TAG, "onCreate: ACCESS GRANTED");
+
+                        }
+                        else {
+                            // You can directly ask for the permission.
+                            // The registered ActivityResultCallback gets the result of this request.
+                            requestPermissionLauncher.launch(Manifest.permission.CAMERA);
+
+                        }
                         selectedFragment = new CheckIn();
                         break;
+
                     case R.id.userProfile:
                         selectedFragment = new UserProfile();
                         break;
@@ -51,7 +73,18 @@ public class MainPage extends AppCompatActivity {
                 return true;
             }
     };
+    private ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
 
+                } else {
+                    // Explain to the user that the feature is unavailable because the
+                    // features requires a permission that the user has denied. At the
+                    // same time, respect the user's decision. Don't link to system
+                    // settings in an effort to convince the user to change their
+                    // decision.
+                }
+            });
 
     private void openAlertDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainPage.this);
@@ -82,4 +115,5 @@ public class MainPage extends AppCompatActivity {
     public void onBackPressed() {
         openAlertDialog();
     }
+
 }

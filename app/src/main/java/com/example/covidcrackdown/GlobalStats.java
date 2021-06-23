@@ -1,8 +1,10 @@
 package com.example.covidcrackdown;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,20 +25,24 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
 public class GlobalStats extends Fragment {
 
-    private TextView confirmedCasesTotal;
-    private TextView confirmedCasesToday;
-    private TextView recoveredCasesTotal;
-    private TextView recoveredCasesToday;
-    private TextView deathCasesTotal;
-    private TextView deathCasesToday;
-    private TextView activeCasesTotal;
-    private TextView activeCasesToday;
+    private TextView confirmedCasesTotalGlobal;
+    private TextView confirmedCasesTodayGlobal;
+    private TextView recoveredCasesTotalGlobal;
+    private TextView recoveredCasesTodayGlobal;
+    private TextView deathCasesTotalGlobal;
+    private TextView deathCasesTodayGlobal;
+    private TextView activeCasesTotalGlobal;
+    private TextView activeCasesTodayGlobal;
+    private TextView date;
 
     public GlobalStats() {
         // Required empty public constructor
@@ -89,6 +95,7 @@ public class GlobalStats extends Fragment {
 //        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,14 +109,19 @@ public class GlobalStats extends Fragment {
                 deathCasesTotal, deathCasesToday,
                 activeCasesTotal, activeCasesToday);
         globalStatsRecyclerView.setAdapter(globalStatsNumbersAdapter);*/
-        confirmedCasesTotal = view.findViewById(R.id.stats_confirmed_cases_total);
-        confirmedCasesToday = view.findViewById(R.id.stats_confirmed_cases_today);
-        recoveredCasesTotal = view.findViewById(R.id.stats_recovered_cases_total);
-        recoveredCasesToday = view.findViewById(R.id.stats_recovered_cases_today);
-        deathCasesTotal = view.findViewById(R.id.stats_death_cases_total);
-        deathCasesToday = view.findViewById(R.id.stats_death_cases_today);
-        activeCasesTotal = view.findViewById(R.id.stats_active_cases_total);
-        activeCasesToday = view.findViewById(R.id.stats_active_cases_today);
+        confirmedCasesTotalGlobal = view.findViewById(R.id.stats_confirmed_cases_total);
+        confirmedCasesTodayGlobal = view.findViewById(R.id.stats_confirmed_cases_today);
+        recoveredCasesTotalGlobal = view.findViewById(R.id.stats_recovered_cases_total);
+        recoveredCasesTodayGlobal = view.findViewById(R.id.stats_recovered_cases_today);
+        deathCasesTotalGlobal = view.findViewById(R.id.stats_death_cases_total);
+        deathCasesTodayGlobal = view.findViewById(R.id.stats_death_cases_today);
+        activeCasesTotalGlobal = view.findViewById(R.id.stats_active_cases_total);
+        activeCasesTodayGlobal = view.findViewById(R.id.stats_active_cases_today);
+        date = view.findViewById(R.id.stats_global_date);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        date.setText("DATE: " + dtf.format(now));
 
         String url = "https://corona.lmao.ninja/v3/covid-19/all";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -118,14 +130,23 @@ public class GlobalStats extends Fragment {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            confirmedCasesTotal.setText(response.get("cases").toString());
-                            confirmedCasesToday.setText(response.get("todayCases").toString());
-                            recoveredCasesTotal.setText(response.get("recovered").toString());
-                            recoveredCasesToday.setText(response.get("todayRecovered").toString());
-                            deathCasesTotal.setText(response.get("deaths").toString());
-                            deathCasesToday.setText(response.get("todayDeaths").toString());
-                            activeCasesTotal.setText(response.get("active").toString());
-                            activeCasesToday.setText(response.get("active").toString());
+                            String confirmedCasesTotal = "Total Confirmed cases: \n" + numFormatter(response.get("cases").toString());
+                            String confirmedCasesToday = "+" + numFormatter(response.get("todayCases").toString());
+                            String recoveredCasesTotal = "Total Recovered cases: \n" + numFormatter(response.get("recovered").toString());
+                            String recoveredCasesToday = "+" + numFormatter(response.get("todayRecovered").toString());
+                            String deathCasesTotal = "Total Death cases: \n" + numFormatter(response.get("deaths").toString());
+                            String deathCasesToday = "+" + numFormatter(response.get("todayDeaths").toString());
+                            String activeCasesTotal = "Total Active cases: \n" + numFormatter(response.get("active").toString());
+                            String activeCasesToday = "+" + numFormatter(response.get("active").toString());
+
+                            confirmedCasesTotalGlobal.setText(confirmedCasesTotal);
+                            confirmedCasesTodayGlobal.setText(confirmedCasesToday);
+                            recoveredCasesTotalGlobal.setText(recoveredCasesTotal);
+                            recoveredCasesTodayGlobal.setText(recoveredCasesToday);
+                            deathCasesTotalGlobal.setText(deathCasesTotal);
+                            deathCasesTodayGlobal.setText(deathCasesToday);
+                            activeCasesTotalGlobal.setText(activeCasesTotal);
+                            activeCasesTodayGlobal.setText(activeCasesToday);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -140,5 +161,12 @@ public class GlobalStats extends Fragment {
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
         return view;
+    }
+
+    public String numFormatter(String cases){
+        double amount = Double.parseDouble(cases);
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String converted = formatter.format(amount);
+        return converted;
     }
 }

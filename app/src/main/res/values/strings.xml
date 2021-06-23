@@ -28,6 +28,8 @@
     <string name="user">User</string>
     <string name="username">Username</string>
     <string name="user_profile">User Profile</string>
+    <string name="warning">You have been exposed to several individual with high rish of covid-19 carrier.
+    Please perform a swab test at the nearest help center or perform self-quarantine for 14-days</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

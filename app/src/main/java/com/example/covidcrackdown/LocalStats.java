@@ -1,8 +1,10 @@
 package com.example.covidcrackdown;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -36,6 +41,7 @@ public class LocalStats extends Fragment {
     private TextView deathCasesTodayLocal;
     private TextView activeCasesTotalLocal;
     private TextView activeCasesTodayLocal;
+    private TextView date;
 
     public LocalStats() {
         // Required empty public constructor
@@ -55,6 +61,7 @@ public class LocalStats extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +75,11 @@ public class LocalStats extends Fragment {
         deathCasesTodayLocal = view.findViewById(R.id.stats_local_death_cases_today);
         activeCasesTotalLocal = view.findViewById(R.id.stats_local_active_cases_total);
         activeCasesTodayLocal = view.findViewById(R.id.stats_local_active_cases_today);
+        date = view.findViewById(R.id.stats_local_date);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        date.setText("DATE: " + dtf.format(now));
         /*String url = "https://corona.lmao.ninja/v3/covid-19/all";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -114,14 +126,23 @@ public class LocalStats extends Fragment {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            confirmedCasesTotalLocal.setText(response.get("cases").toString());
-                            confirmedCasesTodayLocal.setText(response.get("todayCases").toString());
-                            recoveredCasesTotalLocal.setText(response.get("recovered").toString());
-                            recoveredCasesTodayLocal.setText(response.get("todayRecovered").toString());
-                            deathCasesTotalLocal.setText(response.get("deaths").toString());
-                            deathCasesTodayLocal.setText(response.get("todayDeaths").toString());
-                            activeCasesTotalLocal.setText(response.get("active").toString());
-                            activeCasesTodayLocal.setText(response.get("active").toString());
+                            String confirmedCasesTotal = "Total Confirmed cases: \n" + numFormatter(response.get("cases").toString());
+                            String confirmedCasesToday = "+" + numFormatter(response.get("todayCases").toString()) + " today";
+                            String recoveredCasesTotal = "Total Recovered cases: \n" + numFormatter(response.get("recovered").toString());
+                            String recoveredCasesToday = "+" + numFormatter(response.get("todayRecovered").toString()) + " today";
+                            String deathCasesTotal = "Total Death cases: \n" + numFormatter(response.get("deaths").toString());
+                            String deathCasesToday = "+" + numFormatter(response.get("todayDeaths").toString()) + " today";
+                            String activeCasesTotal = "Total Active cases: \n" + numFormatter(response.get("active").toString());
+                            String activeCasesToday = "+" + numFormatter(response.get("active").toString()) + " today";
+
+                            confirmedCasesTotalLocal.setText(confirmedCasesTotal);
+                            confirmedCasesTodayLocal.setText(confirmedCasesToday);
+                            recoveredCasesTotalLocal.setText(recoveredCasesTotal);
+                            recoveredCasesTodayLocal.setText(recoveredCasesToday);
+                            deathCasesTotalLocal.setText(deathCasesTotal);
+                            deathCasesTodayLocal.setText(deathCasesToday);
+                            activeCasesTotalLocal.setText(activeCasesTotal);
+                            activeCasesTodayLocal.setText(activeCasesToday);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -137,5 +158,12 @@ public class LocalStats extends Fragment {
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
 
         return view;
+    }
+
+    public String numFormatter(String cases){
+        double amount = Double.parseDouble(cases);
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String converted = formatter.format(amount);
+        return converted;
     }
 }
