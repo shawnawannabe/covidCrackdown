@@ -1,14 +1,12 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -17,13 +15,16 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.example.covidcrackdown.R;
+import com.example.covidcrackdown.fragments.UserProfileFragment;
+import com.example.covidcrackdown.fragments.HomePageFragment;
+import com.example.covidcrackdown.fragments.CheckInFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static android.content.ContentValues.TAG;
 
-public class MainPage extends AppCompatActivity {
+public class MainPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class MainPage extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomePage()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomePageFragment()).commit();
 
     }
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener =
@@ -43,7 +44,7 @@ public class MainPage extends AppCompatActivity {
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.homePage:
-                        selectedFragment = new HomePage();
+                        selectedFragment = new HomePageFragment();
                         break;
                     case R.id.checkIn:
                         if (ContextCompat.checkSelfPermission(
@@ -59,14 +60,14 @@ public class MainPage extends AppCompatActivity {
                             requestPermissionLauncher.launch(Manifest.permission.CAMERA);
 
                         }
-                        selectedFragment = new CheckIn();
+                        selectedFragment = new CheckInFragment();
                         break;
 
                     case R.id.userProfile:
-                        selectedFragment = new UserProfile();
+                        selectedFragment = new UserProfileFragment();
                         break;
                     case R.id.botNavMenu:
-                        selectedFragment = new Menu();
+                        selectedFragment = new MenuActivity();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, selectedFragment).commit();
@@ -87,7 +88,7 @@ public class MainPage extends AppCompatActivity {
             });
 
     private void openAlertDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainPage.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainPageActivity.this);
         builder.setMessage("Are you sure to exit?");
 //        builder.setCancelable(true);
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {

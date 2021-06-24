@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.covidcrackdown.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -17,7 +18,7 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class HotSpot extends AppCompatActivity implements OnMapReadyCallback {
+public class HotSpotActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

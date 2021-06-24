@@ -1,6 +1,5 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,24 +9,25 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
+import com.example.covidcrackdown.R;
+import com.example.covidcrackdown.adapters.HomePageFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class HomePage extends Fragment {
+public class HomePageFragment extends Fragment {
 
     //tab variable
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     HomePageFragmentAdapter adapter;
 
-    public HomePage() {
+    public HomePageFragment() {
         // Required empty public constructor
     }
 
-    public static HomePage newInstance(String param1, String param2) {
-        HomePage fragment = new HomePage();
+    public static HomePageFragment newInstance(String param1, String param2) {
+        HomePageFragment fragment = new HomePageFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,9 +7,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
+import com.example.covidcrackdown.R;
+import com.example.covidcrackdown.adapters.StatsFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class Statistic extends AppCompatActivity {
+public class StatisticActivity extends AppCompatActivity {
 
     //tab variable
     private TabLayout tabLayout;

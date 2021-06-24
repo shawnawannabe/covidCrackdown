@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+
+import com.example.covidcrackdown.R;
+import com.example.covidcrackdown.models.Location;
+
 import java.util.ArrayList;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyViewHolder> {
@@ -32,7 +36,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
 
         Location location = locationList.get(position);
         holder.locationName.setText(location.getLocationName());
-        holder.locationDate.setText(Integer.toString(location.getTime()));
+        holder.locationDate.setText(location.getTime());
 
     }
 

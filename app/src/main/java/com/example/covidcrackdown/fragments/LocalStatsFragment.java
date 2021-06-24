@@ -1,25 +1,23 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.fragments;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.covidcrackdown.models.MySingleton;
+import com.example.covidcrackdown.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,11 +25,10 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
-public class LocalStats extends Fragment {
+public class LocalStatsFragment extends Fragment {
 
     private TextView confirmedCasesTotalLocal;
     private TextView confirmedCasesTodayLocal;
@@ -43,12 +40,12 @@ public class LocalStats extends Fragment {
     private TextView activeCasesTodayLocal;
     private TextView date;
 
-    public LocalStats() {
+    public LocalStatsFragment() {
         // Required empty public constructor
     }
 
-    public static LocalStats newInstance(String param1, String param2) {
-        LocalStats fragment = new LocalStats();
+    public static LocalStatsFragment newInstance(String param1, String param2) {
+        LocalStatsFragment fragment = new LocalStatsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -80,44 +77,6 @@ public class LocalStats extends Fragment {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy");
         LocalDateTime now = LocalDateTime.now();
         date.setText("DATE: " + dtf.format(now));
-        /*String url = "https://corona.lmao.ninja/v3/covid-19/all";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            Numbers numbers = new Numbers(
-                                    response.get("cases").toString(), response.get("todayCases").toString(),
-                                    response.get("recovered").toString(), response.get("todayRecovered").toString(),
-                                    response.get("deaths").toString(), response.get("todayDeaths").toString(),
-                                    response.get("active").toString(), response.get("active").toString());
-                            numbersList.add(numbers);
-                            String pt = response.get("cases").toString();
-                            Log.d(TAG, "HERE:" + numbers.toString());
-                            Log.d(TAG, "HERE:" + numbersList.toString());
-                            Toast.makeText(getActivity(), numbersList.toString(), Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-                        Log.d(TAG, "onResponse: " + error.getMessage());
-
-                    }
-                });
-
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
-
-        globalStatsRecyclerView = (RecyclerView) view.findViewById(R.id.global_stats_recycler_view);
-        globalStatsRecyclerView.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
-        numbersList = new ArrayList<>();
-        globalStatsNumbersAdapter = new NumbersAdapter((Context) getActivity(), numbersList);
-        globalStatsRecyclerView.setAdapter(globalStatsNumbersAdapter);*/
 
         String url = "https://corona.lmao.ninja/v3/covid-19/countries/Malaysia?strict=true";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -154,7 +113,7 @@ public class LocalStats extends Fragment {
                         Log.d(TAG, "onResponse: " + error.getMessage());
                     }
                 });
-        // Access the RequestQueue through your singleton class.
+        // Access the RequestQueue through singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
 
         return view;

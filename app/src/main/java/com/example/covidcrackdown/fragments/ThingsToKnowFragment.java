@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,14 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ThingsToKnow extends Fragment {
+import com.example.covidcrackdown.R;
+import com.example.covidcrackdown.adapters.RecyclerAdapter;
 
-    public ThingsToKnow() {
+public class ThingsToKnowFragment extends Fragment {
+
+    public ThingsToKnowFragment() {
         // Required empty public constructor
     }
 
-    public static ThingsToKnow newInstance(String param1, String param2) {
-        ThingsToKnow fragment = new ThingsToKnow();
+    public static ThingsToKnowFragment newInstance(String param1, String param2) {
+        ThingsToKnowFragment fragment = new ThingsToKnowFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

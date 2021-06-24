@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.models;
 
 import android.content.Context;
 import android.graphics.Bitmap;

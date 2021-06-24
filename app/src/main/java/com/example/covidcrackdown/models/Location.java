@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.models;
 
 import com.google.firebase.database.Exclude;
 
@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class Location {
     private String locationName;
-    private Integer time;
+    private String time;
 //    private Map<String, Boolean> info = new HashMap<>();
 
     public Location(){
 
     }
-    public Location(String locationName, Integer time) {
+    public Location(String locationName, String time) {
         this.locationName = locationName;
         this.time = time;
     }
@@ -35,11 +35,11 @@ public class Location {
         this.locationName = locationName;
     }
 
-    public Integer getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainPage">
+    tools:context=".activities.MainPageActivity">
 
     <FrameLayout
         android:id="@+id/fragment_layout"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_above="@+id/bottom_navigation_view"
-        android:background="#14000000"/>
+        android:background="@color/bg"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"

@@ -5,19 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignIn"
+    tools:context=".activities.SignInActivity"
     android:background="@drawable/gradient_background"
-    android:orientation="vertical">
-
-
+    android:orientation="vertical"
+    android:paddingTop="20dp">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/app_icon"
-        android:layout_margin="30dp"
-        />
-
-
+        android:layout_margin="30dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +23,6 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,14 +31,13 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:textStyle="italic"
-        />
+        android:textStyle="italic"/>
 
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="25dp"
         android:textSize="18sp"
         android:layout_gravity="center"
         android:textColor="@color/black"
@@ -63,7 +57,6 @@
         android:background="@drawable/custom_input"
         android:layout_gravity="center"
         android:autofillHints="emailAddress" />
-    <!--TODO: Autofile Hint-->
     <EditText
         android:id="@+id/edit_text_activity_sign_in_password"
         android:layout_width="300dp"
@@ -79,8 +72,7 @@
         android:background="@drawable/custom_input"
         android:layout_gravity="center"/>
 
-
-    <TextView
+   <!-- <TextView
         android:id="@+id/text_view_activity_forgot_password"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -89,13 +81,13 @@
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
         android:textAlignment="textEnd"
-        tools:ignore="RtlCompat" />
+        tools:ignore="RtlCompat" />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/activity_main_loginButton"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:layout_gravity="center"
         android:text="@string/sign_in"
         android:textColor="#FFFFFF"
@@ -104,26 +96,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="70dp"
+        android:paddingHorizontal="55dp"
         android:layout_marginTop="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/do_not_have_account"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF"
+            android:padding="10dp"/>
 
         <TextView
             android:id="@+id/text_view_activity_sign_in_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
+            android:padding="10dp"
             android:textColor="@color/colorPrimaryVariant"
             android:layout_gravity="end"
             android:textAlignment="textEnd"/>
     </LinearLayout>
 
-    <LinearLayout
+<!--    <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:padding="30dp"
@@ -147,9 +141,9 @@
             android:layout_height="1dp"
             android:background="@color/colorPrimaryVariant"
             android:layout_gravity="center"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
-    <LinearLayout
+<!--    <LinearLayout
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -167,7 +161,7 @@
             android:src="@drawable/ic_facebook_icon"
             android:layout_weight="1"/>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>
 

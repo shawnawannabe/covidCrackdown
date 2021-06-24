@@ -1,38 +1,33 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.covidcrackdown.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-public class SignIn extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     private TextView signUpTextView;
-    private TextView forgottenPasswordTextView;
     private EditText signInEmail;
     private EditText signInPassword;
-    private ImageView googleIconImage;
-    private ImageView facebookIconImage;
+//    private TextView forgottenPasswordTextView;
+//    private ImageView googleIconImage;
+//    private ImageView facebookIconImage;
 
     private FirebaseAuth mAuth;
     private Button loginButton;
@@ -43,18 +38,13 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("message");
-//        myRef.setValue("Bye bye!");
-
         signUpTextView = findViewById(R.id.text_view_activity_sign_in_sign_up);
-        forgottenPasswordTextView = findViewById(R.id.text_view_activity_forgot_password);
-        googleIconImage = findViewById(R.id.image_view_google_icon);
-        facebookIconImage = findViewById(R.id.image_view_facebook_icon);
         loginButton = findViewById(R.id.activity_main_loginButton);
         signInEmail = findViewById(R.id.edit_text_activity_sign_in_email);
         signInPassword = findViewById(R.id.edit_text_activity_sign_in_password);
+//        forgottenPasswordTextView = findViewById(R.id.text_view_activity_forgot_password);
+//        googleIconImage = findViewById(R.id.image_view_google_icon);
+//        facebookIconImage = findViewById(R.id.image_view_facebook_icon);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -74,7 +64,7 @@ public class SignIn extends AppCompatActivity {
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignIn.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
@@ -86,16 +76,12 @@ public class SignIn extends AppCompatActivity {
                                     // If sign in fails, display a message to the user.
                                     Log.w("SIGN-IN FAILED", "signInWithEmail:failure", task.getException());
                                     String errorMessage = task.getException().getMessage();
-                                    Toast.makeText(SignIn.this, "Authentication failed: " + errorMessage,
+                                    Toast.makeText(SignInActivity.this, "Authentication failed: " + errorMessage,
                                             Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             }
                         });
-//                signInAnonymously();
-//                mDatabase.child("users").child("u1").child("username").setValue("name of user 1");
-//                writeNewUser("id2","user2", "user2@gmail.com");
-
             }
         });
 
@@ -104,7 +90,7 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View v) {openSignUpActivity();}
         });
 
-        facebookIconImage.setOnClickListener(new View.OnClickListener() {
+        /*facebookIconImage.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  openBackEndFunctionNotImplementedYet();
@@ -123,32 +109,8 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View v) {
                 openBackEndFunctionNotImplementedYet();
             }
-        });
+        });*/
     }
-/* delete later
-
-    public class User {
-
-        public String username;
-        public String email;
-
-        public User() {
-            // Default constructor required for calls to DataSnapshot.getValue(User.class)
-        }
-
-        public User(String username, String email) {
-            this.username = username;
-            this.email = email;
-        }
-
-    }
-
-    public void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
-
-        mDatabase.child("users").child(userId).setValue(user);
-    }
-*/
 
     public void onStart() {
         super.onStart();
@@ -175,7 +137,7 @@ public class SignIn extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("FAIL", "signInAnonymously:failure", task.getException());
-                            Toast.makeText(SignIn.this, "Authentication failed.",
+                            Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -189,20 +151,20 @@ public class SignIn extends AppCompatActivity {
     }
 
     public void openSignUpActivity(){
-        Intent intent = new Intent(this, SignUp.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 
     public void openMainPage(){
-        Intent intent = new Intent(this, MainPage.class);
+        Intent intent = new Intent(this, MainPageActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void openBackEndFunctionNotImplementedYet(){
+    /*public void openBackEndFunctionNotImplementedYet(){
         Intent intent = new Intent(this, FunctionNotImplemented.class);
         startActivity(intent);
-    }
+    }*/
 
     private long pressedTime;
 

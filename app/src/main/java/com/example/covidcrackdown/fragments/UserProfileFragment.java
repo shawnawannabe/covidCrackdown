@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.fragments;
 
 import android.os.Bundle;
 
@@ -8,32 +8,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.covidcrackdown.R;
+import com.example.covidcrackdown.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserProfile#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class UserProfile extends Fragment {
+public class UserProfileFragment extends Fragment {
 
-    public UserProfile() {
+    public UserProfileFragment() {
         // Required empty public constructor
     }
 
-    public static UserProfile newInstance(String param1, String param2) {
-        UserProfile fragment = new UserProfile();
+    public static UserProfileFragment newInstance(String param1, String param2) {
+        UserProfileFragment fragment = new UserProfileFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -70,13 +64,6 @@ public class UserProfile extends Fragment {
                 textViewGender.setText(currentUser.getGender());
                 textViewContactNo.setText(Integer.toString(currentUser.getContactNo()));
                 textViewEmail.setText(currentUser.getEmail());
-//                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
-//                    User currentUser = snapshot.getValue(User.class);
-//                    String str = currentUser.getEmail();
-//                    System.out.println("HERE: "+str);
-//                 }
-//                TODO: remove the lag when changing text in fragment
-
             }
 
             @Override

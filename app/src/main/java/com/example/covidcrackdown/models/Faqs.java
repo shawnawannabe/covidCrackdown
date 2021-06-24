@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.models;
 
 import com.google.firebase.database.Exclude;
 

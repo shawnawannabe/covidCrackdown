@@ -1,4 +1,4 @@
-package com.example.covidcrackdown;
+package com.example.covidcrackdown.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +15,15 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.covidcrackdown.models.MySingleton;
+import com.example.covidcrackdown.R;
+import com.example.covidcrackdown.models.Faqs;
+import com.example.covidcrackdown.models.Location;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,7 +32,7 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
-public class Menu extends Fragment {
+public class MenuActivity extends Fragment {
 
     private FirebaseAuth mAuth;
     private TextView hotSpotTextView;
@@ -40,12 +41,12 @@ public class Menu extends Fragment {
     private TextView logoutTextView;
     private DatabaseReference mDatebase;
 
-    public Menu() {
+    public MenuActivity() {
         // Required empty public constructor
     }
 
-    public static Menu newInstance(String param1, String param2) {
-        Menu fragment = new Menu();
+    public static MenuActivity newInstance(String param1, String param2) {
+        MenuActivity fragment = new MenuActivity();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -100,7 +101,7 @@ public class Menu extends Fragment {
     }
 
     public void openHotSpotActivity(){
-        Intent intent = new Intent(getActivity(), HotSpot.class);
+        Intent intent = new Intent(getActivity(), HotSpotActivity.class);
         startActivity(intent);
 //        FirebaseUser user = mAuth.getCurrentUser();
 //        String userId = user.getUid();
@@ -128,13 +129,13 @@ public class Menu extends Fragment {
     }
 
     public void openStatsActivity(){
-        Intent intent = new Intent(getActivity(), Statistic.class);
+        Intent intent = new Intent(getActivity(), StatisticActivity.class);
         startActivity(intent);
 //        tryout("https://corona.lmao.ninja/v2/all");
     }
 
     public void openLogoutActivity(){
-        Intent intent = new Intent(getActivity(), SignIn.class);
+        Intent intent = new Intent(getActivity(), SignInActivity.class);
         killActivity();
         startActivity(intent);
     }
@@ -143,7 +144,7 @@ public class Menu extends Fragment {
         getActivity().finish();
     }
 
-    public void writeLocation(String userId, String locationName, Integer time){
+    public void writeLocation(String userId, String locationName, String time){
         //push() to generate node
         // getKey() to generate key
         String key = mDatebase.push().getKey();
@@ -186,7 +187,7 @@ public class Menu extends Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
+                        // TODO: THE WRITE DATA
                         Log.d(TAG, "onResponse: " + error.getMessage());
 
                     }

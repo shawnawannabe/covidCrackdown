@@ -13,6 +13,7 @@
     <color name="amber_900">#ff6f00</color>
     <color name="red_900">#b71c1c</color>
     <color name="green_500">#4caf50</color>
+    <color name="bg">#14000000</color>
 
     <color name="colorPrimary">#FF9c27b0</color>
     <color name="colorPrimaryVariant">#4a148c</color>

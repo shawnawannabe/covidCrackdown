@@ -6,8 +6,9 @@
     android:id="@+id/faqs_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FaqsActivity"
-    android:orientation="vertical">
+    tools:context=".activities.FaqsActivity"
+    android:orientation="vertical"
+    android:background="@color/bg">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/faqs_toolbar"
