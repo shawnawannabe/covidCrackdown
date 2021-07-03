@@ -37,7 +37,6 @@ public class GlobalStatsFragment extends Fragment {
     private TextView deathCasesTotalGlobal;
     private TextView deathCasesTodayGlobal;
     private TextView activeCasesTotalGlobal;
-    private TextView activeCasesTodayGlobal;
     private TextView date;
 
     public GlobalStatsFragment() {
@@ -71,7 +70,6 @@ public class GlobalStatsFragment extends Fragment {
         deathCasesTotalGlobal = view.findViewById(R.id.stats_death_cases_total);
         deathCasesTodayGlobal = view.findViewById(R.id.stats_death_cases_today);
         activeCasesTotalGlobal = view.findViewById(R.id.stats_active_cases_total);
-        activeCasesTodayGlobal = view.findViewById(R.id.stats_active_cases_today);
         date = view.findViewById(R.id.stats_global_date);
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy");
@@ -92,7 +90,6 @@ public class GlobalStatsFragment extends Fragment {
                             String deathCasesTotal = "Total Death cases: \n" + numFormatter(response.get("deaths").toString());
                             String deathCasesToday = "+" + numFormatter(response.get("todayDeaths").toString());
                             String activeCasesTotal = "Total Active cases: \n" + numFormatter(response.get("active").toString());
-                            String activeCasesToday = "+" + numFormatter(response.get("active").toString());
 
                             confirmedCasesTotalGlobal.setText(confirmedCasesTotal);
                             confirmedCasesTodayGlobal.setText(confirmedCasesToday);
@@ -101,7 +98,6 @@ public class GlobalStatsFragment extends Fragment {
                             deathCasesTotalGlobal.setText(deathCasesTotal);
                             deathCasesTodayGlobal.setText(deathCasesToday);
                             activeCasesTotalGlobal.setText(activeCasesTotal);
-                            activeCasesTodayGlobal.setText(activeCasesToday);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

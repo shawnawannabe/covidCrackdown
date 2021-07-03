@@ -71,7 +71,6 @@ public class LocalStatsFragment extends Fragment {
         deathCasesTotalLocal = view.findViewById(R.id.stats_local_death_cases_total);
         deathCasesTodayLocal = view.findViewById(R.id.stats_local_death_cases_today);
         activeCasesTotalLocal = view.findViewById(R.id.stats_local_active_cases_total);
-        activeCasesTodayLocal = view.findViewById(R.id.stats_local_active_cases_today);
         date = view.findViewById(R.id.stats_local_date);
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy");
@@ -92,7 +91,6 @@ public class LocalStatsFragment extends Fragment {
                             String deathCasesTotal = "Total Death cases: \n" + numFormatter(response.get("deaths").toString());
                             String deathCasesToday = "+" + numFormatter(response.get("todayDeaths").toString()) + " today";
                             String activeCasesTotal = "Total Active cases: \n" + numFormatter(response.get("active").toString());
-                            String activeCasesToday = "+" + numFormatter(response.get("active").toString()) + " today";
 
                             confirmedCasesTotalLocal.setText(confirmedCasesTotal);
                             confirmedCasesTodayLocal.setText(confirmedCasesToday);
@@ -101,7 +99,6 @@ public class LocalStatsFragment extends Fragment {
                             deathCasesTotalLocal.setText(deathCasesTotal);
                             deathCasesTodayLocal.setText(deathCasesToday);
                             activeCasesTotalLocal.setText(activeCasesTotal);
-                            activeCasesTodayLocal.setText(activeCasesToday);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
